@@ -1,0 +1,76 @@
+{
+  "name": "vue-webpack-test",
+  "version": "1.0.0",
+  "description": "vue webpack ",
+  "main": "index.js",
+  "scripts": {
+    "dev": "cross-env BABEL_ENV=development webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+    "start": "npm run dev",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zzj110/vue-webpack-test.git"
+  },
+  "keywords": [
+    "vue",
+    "webpack",
+    "vuex"
+  ],
+  "author": "zzj",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zzj110/vue-webpack-test/issues"
+  },
+  "homepage": "https://github.com/zzj110/vue-webpack-test#readme",
+  "devDependencies": {
+    "autoprefixer": "8.5.0",
+    "babel-core": "6.26.3",
+    "babel-eslint": "^10.0.1",
+    "babel-loader": "7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-2": "6.24.1",
+    "chalk": "2.4.1",
+    "copy-webpack-plugin": "4.5.2",
+    "cross-env": "5.2.0",
+    "css-loader": "1.0.0",
+    "eslint": "4.19.1",
+    "eslint-friendly-formatter": "4.0.1",
+    "eslint-loader": "2.0.0",
+    "eslint-plugin-vue": "4.7.1",
+    "file-loader": "1.1.11",
+    "friendly-errors-webpack-plugin": "1.7.0",
+    "html-webpack-plugin": "4.0.0-alpha",
+    "mini-css-extract-plugin": "0.4.1",
+    "node-notifier": "5.2.1",
+    "node-sass": "^4.7.2",
+    "optimize-css-assets-webpack-plugin": "5.0.0",
+    "ora": "3.0.0",
+    "portfinder": "1.0.13",
+    "postcss-loader": "2.1.6",
+    "postcss-url": "7.3.2",
+    "rimraf": "2.6.2",
+    "sass-loader": "7.0.3",
+    "serve-static": "1.13.2",
+    "shelljs": "0.8.2",
+    "uglifyjs-webpack-plugin": "1.2.7",
+    "url-loader": "1.0.1",
+    "vue-loader": "15.3.0",
+    "vue-template-compiler": "^2.5.21",
+    "webpack": "4.16.5",
+    "webpack-bundle-analyzer": "2.13.1",
+    "webpack-cli": "3.1.0",
+    "webpack-dev-server": "3.1.5",
+    "webpack-merge": "4.1.4"
+  },
+  "dependencies": {
+    "connect": "3.6.6",
+    "vue": "^2.5.21",
+    "vue-router": "3.0.2",
+    "vuex": "^3.0.1"
+  },
+  "engines": {
+    "node": ">= 6.0.0",
+    "npm": ">= 3.0.0"
+  }
+}
