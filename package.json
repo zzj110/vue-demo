@@ -66,6 +66,7 @@
   },
   "dependencies": {
     "connect": "3.6.6",
+    "element-ui": "2.4.6",
     "vue": "^2.5.21",
     "vue-router": "3.0.2",
     "vuex": "^3.0.1"
