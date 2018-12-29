@@ -9,7 +9,7 @@ function resolve(dir) {
   return path.join(__dirname, '..', dir)
 }
 
-const createLintingRule = () => ({
+const createLintingRule = () => ({  // 编码规则
   test: /\.(js|vue)$/,
   loader: 'eslint-loader',
   enforce: 'pre',
