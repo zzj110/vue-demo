@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "cross-env BABEL_ENV=development webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
-    "lint": "eslint --ext .js,.vue src",
+    "lint": "eslint --fix --ext .js,.vue src",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -57,6 +57,7 @@
     "uglifyjs-webpack-plugin": "1.2.7",
     "url-loader": "1.0.1",
     "vue-loader": "15.3.0",
+    "vue-style-loader": "4.1.2",
     "vue-template-compiler": "^2.5.21",
     "webpack": "4.16.5",
     "webpack-bundle-analyzer": "2.13.1",
@@ -67,6 +68,7 @@
   "dependencies": {
     "connect": "3.6.6",
     "element-ui": "2.4.6",
+    "js-cookie": "^2.2.0",
     "vue": "^2.5.21",
     "vue-router": "3.0.2",
     "vuex": "^3.0.1"

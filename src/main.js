@@ -4,6 +4,7 @@ import App from './App'
 import Element from 'element-ui'
 import router from './router'
 import store from './store'
+// import { getToken } from '@/utils/auth' // getToken from cookie
 
 Vue.config.productionTip = false
 
