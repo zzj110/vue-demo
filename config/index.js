@@ -34,6 +34,9 @@ module.exports = {
 
         /**
          * Source Maps
+         * 所有现代浏览器都支持gzip压缩并会为所有HTTP请求自动协商此类压缩。启用gzip压缩可大幅度减所传输
+         * 的响应大小，从而显著缩短下载响应资源所需的时间、减少客户端流量消耗并加快网页的首次呈现速度
+         *
          */
 
         productionSourceMap: false,
