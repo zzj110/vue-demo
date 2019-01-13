@@ -55,7 +55,7 @@ const webpackConfig = merge(baseWebpackConfig, {
       template: 'index.html',
       inject: true,
       favicon: resolve('favicon.ico'),
-      title: 'vue-element-admin',
+      title: 'vue-webpack-test',
       templateParameters: {
         BASE_URL: config.build.assetsPublicPath + config.build.assetsSubDirectory,
       },
@@ -132,6 +132,12 @@ const webpackConfig = merge(baseWebpackConfig, {
         uglifyOptions: {
           mangle: {
             safari10: true
+          },
+          // 生产去掉console代码，减少代码体积，使用ugfify压缩代码
+          compress:{
+            warning:false,
+            drop_console:true,  // 去掉线上console
+            pure_funcs:['console.log']
           }
         },
         sourceMap: config.build.productionSourceMap,
