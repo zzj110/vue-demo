@@ -7,7 +7,8 @@
     "dev": "cross-env BABEL_ENV=development webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
     "lint": "eslint --fix --ext .js,.vue src",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "preserve": "webpack --config ./webpack.skeleton.conf.js && node skeleton.js"
   },
   "repository": {
     "type": "git",
@@ -41,6 +42,7 @@
     "eslint-plugin-vue": "4.7.1",
     "file-loader": "1.1.11",
     "friendly-errors-webpack-plugin": "1.7.0",
+    "html-minifier": "^3.5.21",
     "html-webpack-plugin": "4.0.0-alpha",
     "mini-css-extract-plugin": "0.4.1",
     "node-notifier": "5.2.1",
@@ -58,7 +60,7 @@
     "url-loader": "1.0.1",
     "vue-loader": "15.3.0",
     "vue-style-loader": "4.1.2",
-    "vue-template-compiler": "^2.5.21",
+    "vue-template-compiler": "^2.5.22",
     "webpack": "4.16.5",
     "webpack-bundle-analyzer": "2.13.1",
     "webpack-cli": "3.1.0",
@@ -69,9 +71,11 @@
     "connect": "3.6.6",
     "element-ui": "2.4.6",
     "js-cookie": "^2.2.0",
-    "vue": "^2.5.21",
+    "vue": "^2.5.22",
     "vue-router": "3.0.2",
-    "vuex": "^3.0.1"
+    "vue-server-renderer": "^2.5.22",
+    "vuex": "^3.0.1",
+    "webpack-node-externals": "^1.7.2"
   },
   "engines": {
     "node": ">= 6.0.0",
