@@ -2,14 +2,16 @@
 const path = require('path')
 const utils = require('./utils')
 const config = require('../config')
-const { VueLoaderPlugin } = require('vue-loader')
+const {
+  VueLoaderPlugin
+} = require('vue-loader')
 const vueLoaderConfig = require('./vue-loader.conf')
 
 function resolve(dir) {
   return path.join(__dirname, '..', dir)
 }
 
-const createLintingRule = () => ({  // 编码规则
+const createLintingRule = () => ({ // 编码规则
   test: /\.(js|vue)$/,
   loader: 'eslint-loader',
   enforce: 'pre',
@@ -28,14 +30,14 @@ module.exports = {
   output: {
     path: config.build.assetsRoot,
     filename: '[name].js',
-    publicPath:
-      process.env.NODE_ENV === 'production'
-        ? config.build.assetsPublicPath
-        : config.dev.assetsPublicPath
+    publicPath: process.env.NODE_ENV === 'production' ?
+      config.build.assetsPublicPath :
+      config.dev.assetsPublicPath
   },
   resolve: {
-    extensions: ['.js', '.vue', '.json','.ts'],
+    extensions: ['.js', '.vue', '.json', '.ts'],
     alias: {
+      'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src')
     }
   },
@@ -56,25 +58,24 @@ module.exports = {
           resolve('node_modules/webpack-dev-server/client')
         ]
       },
-      // {
-      //   test: /\.ts$/,
-      //   exclude: /node_modules/,
-      //   enforce: 'pre',
-      //   loader: 'tslint-loader'
-      // },
       {
-        test: /\.ts?$/,
+        test: /\.tsx?$/, // tslint 代码检查, 打开注释可用
+        loader: 'tslint-loader',
+        enforce: 'pre',
+        include: [resolve('src'), resolve('test')],
+        exclude: /node_modules/
+      },
+      {
+        test: /\.tsx?$/,
         exclude: /node_modules/,
-        use: [
-          "babel-loader",
-          {
-            loader: "ts-loader",
-            options: { appendTsxSuffixTo: [/\.vue$/] }
-          },
-          {
-            loader: 'tslint-loader'
+        use: [{
+          loader: 'babel-loader'
+        }, {
+          loader: 'ts-loader',
+          options: {
+            appendTsSuffixTo: [/\.vue$/]
           }
-        ]
+        }]
       },
       {
         test: /\.svg$/,
