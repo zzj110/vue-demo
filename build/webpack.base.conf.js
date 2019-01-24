@@ -23,7 +23,7 @@ const createLintingRule = () => ({  // 编码规则
 module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: {
-    app: './src/main.js'
+    app: './src/main.ts'
   },
   output: {
     path: config.build.assetsRoot,
@@ -34,7 +34,7 @@ module.exports = {
         : config.dev.assetsPublicPath
   },
   resolve: {
-    extensions: ['.js', '.vue', '.json'],
+    extensions: ['.js', '.vue', '.json','.ts'],
     alias: {
       '@': resolve('src')
     }
@@ -55,6 +55,20 @@ module.exports = {
           resolve('test'),
           resolve('node_modules/webpack-dev-server/client')
         ]
+      },
+      {
+        test: /\.ts$/,
+        exclude: /node_modules/,
+        enforce: 'pre',
+        loader: 'tslint-loader'
+      },
+      {
+        test: /\.ts?$/,
+        exclude: /node_modules/,
+        loader: 'ts-loader',
+        options:{
+          appendTsSuffixTo:[/\.vue$/]
+        }
       },
       {
         test: /\.svg$/,

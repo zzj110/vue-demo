@@ -1,7 +1,8 @@
 const path = require('path')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const nodeExternals = require('webpack-node-externals')
 const VueSSRServerPlugin = require('vue-server-renderer/server-plugin')
-const VueLoaderPlugin = require('vue-loader/lib/plugin')
+
 module.exports = {
   target: 'node',
   entry: {
@@ -14,17 +15,19 @@ module.exports = {
     libraryTarget: 'commonjs2'
   },
   module: {
-    rules: [{
-      test: /\.css$/,
-      use: [
-        'vue-style-loader',
-        'css-loader'
-      ]
-    },
-    {
-      test: /\.vue$/,
-      loader: 'vue-loader'
-    }]
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          'vue-style-loader',
+          'css-loader'
+        ]
+      },
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader'
+      }
+    ]
   },
   externals: nodeExternals({
     whitelist: /\.css$/
