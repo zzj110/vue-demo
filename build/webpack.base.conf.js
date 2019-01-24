@@ -56,19 +56,25 @@ module.exports = {
           resolve('node_modules/webpack-dev-server/client')
         ]
       },
-      {
-        test: /\.ts$/,
-        exclude: /node_modules/,
-        enforce: 'pre',
-        loader: 'tslint-loader'
-      },
+      // {
+      //   test: /\.ts$/,
+      //   exclude: /node_modules/,
+      //   enforce: 'pre',
+      //   loader: 'tslint-loader'
+      // },
       {
         test: /\.ts?$/,
         exclude: /node_modules/,
-        loader: 'ts-loader',
-        options:{
-          appendTsSuffixTo:[/\.vue$/]
-        }
+        use: [
+          "babel-loader",
+          {
+            loader: "ts-loader",
+            options: { appendTsxSuffixTo: [/\.vue$/] }
+          },
+          {
+            loader: 'tslint-loader'
+          }
+        ]
       },
       {
         test: /\.svg$/,

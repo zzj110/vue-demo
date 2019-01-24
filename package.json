@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "cross-env BABEL_ENV=development webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
-    "lint": "eslint --fix --ext .js,.vue src",
+    "lint": "tslint -c tslint.json 'src/**/*.ts' && eslint --fix --ext .js,.vue src",
+    "ts": "tslint -c tslint.json 'src/**/*.{ts,tsx}' 'src/*.{ts,tsx}' ",
     "test": "echo \"Error: no test specified\" && exit 1",
     "preserve": "webpack --config ./webpack.skeleton.conf.js && node skeleton.js"
   },
@@ -56,6 +57,11 @@
     "sass-loader": "7.0.3",
     "serve-static": "1.13.2",
     "shelljs": "0.8.2",
+    "ts-loader": "^5.3.3",
+    "tslint": "^5.12.1",
+    "tslint-config-standard": "^8.0.1",
+    "tslint-loader": "^3.5.4",
+    "typescript": "^3.2.4",
     "uglifyjs-webpack-plugin": "1.2.7",
     "url-loader": "1.0.1",
     "vue-loader": "15.3.0",
