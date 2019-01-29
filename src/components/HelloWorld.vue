@@ -11,7 +11,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import Component from 'vue-class-component'
-import RC from '@/components/renderComponent.vue'
+import RC from '@/components/renderComponent.tsx'
 import TestMixin from '../mixins/test-mixin'
 import { Getter } from 'vuex-class'
 
@@ -28,7 +28,7 @@ export default class HelloWorld extends Vue<TestMixin> {
 
   mounted () {
     console.log(this.testMixinArg)
-    console.log('这是 _.assign({})', _.assign({}))
+    console.log('这是 _.assign({})')
   }
 }
 </script>

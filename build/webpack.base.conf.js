@@ -25,7 +25,10 @@ const createLintingRule = () => ({ // 编码规则
 module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: {
-    app: './src/main.ts'
+    app: './src/main.ts',
+    vendor: [
+      "lodash"
+    ]
   },
   output: {
     path: config.build.assetsRoot,
@@ -35,7 +38,7 @@ module.exports = {
       config.dev.assetsPublicPath
   },
   resolve: {
-    extensions: ['.js', '.vue', '.json', '.ts'],
+    extensions: ['.js', '.vue', '.json', '.ts','tsx'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src')
@@ -44,11 +47,11 @@ module.exports = {
   module: {
     rules: [
       ...(config.dev.useEslint ? [createLintingRule()] : []),
-      {
-        test: /\.vue$/,
-        loader: 'vue-loader',
-        options: vueLoaderConfig
-      },
+      // {
+      //   test: /\.vue$/,
+      //   loader: 'vue-loader',
+      //   options: vueLoaderConfig
+      // },
       {
         test: /\.js$/,
         loader: 'babel-loader?cacheDirectory',
@@ -64,6 +67,16 @@ module.exports = {
         enforce: 'pre',
         include: [resolve('src'), resolve('test')],
         exclude: /node_modules/
+      },
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader',
+        options: Object.assign(vueLoaderConfig, {
+          loaders: {
+            ts: "ts-loader",
+            tsx: "babel-loader!ts-loader"
+          }
+        })
       },
       {
         test: /\.tsx?$/,

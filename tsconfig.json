@@ -62,6 +62,7 @@
     "node_modules"
   ],
   "compilerOptions": {
+    "jsx": "preserve",
     "allowSyntheticDefaultImports": true,
     "allowJs": true,
     "module": "es2015",
