@@ -58,17 +58,25 @@
 // }
 
 {
+  "include": [
+    "src/**/*"
+  ],
   "exclude": [
     "node_modules"
   ],
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["*", "src/*"]
+    },
     "jsx": "preserve",
+    "jsxFactory": "h",
     "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
     "allowJs": true,
-    "module": "es2015",
+    "module": "esnext",
     "target": "es5",
     "moduleResolution": "node",
-    "experimentalDecorators": true,
     "isolatedModules": true,
     "typeRoots": [
       "./types",

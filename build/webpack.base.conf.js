@@ -6,6 +6,7 @@ const {
   VueLoaderPlugin
 } = require('vue-loader')
 const vueLoaderConfig = require('./vue-loader.conf')
+const webpack = require('webpack')
 
 function resolve(dir) {
   return path.join(__dirname, '..', dir)
@@ -23,7 +24,6 @@ const createLintingRule = () => ({ // 编码规则
 })
 
 module.exports = {
-  context: path.resolve(__dirname, '../'),
   entry: {
     app: './src/main.ts',
     vendor: [
@@ -33,75 +33,68 @@ module.exports = {
   output: {
     path: config.build.assetsRoot,
     filename: '[name].js',
-    publicPath: process.env.NODE_ENV === 'production' ?
-      config.build.assetsPublicPath :
-      config.dev.assetsPublicPath
+    publicPath: process.env.NODE_ENV === 'production'
+      ? config.build.assetsPublicPath
+      : config.dev.assetsPublicPath
   },
   resolve: {
-    extensions: ['.js', '.vue', '.json', '.ts','tsx'],
+    extensions: ['.js', '.vue', '.json', '.ts', '.tsx'],
     alias: {
-      'vue$': 'vue/dist/vue.esm.js',
-      '@': resolve('src')
+      '@': resolve('src'),
     }
   },
   module: {
     rules: [
-      ...(config.dev.useEslint ? [createLintingRule()] : []),
       // {
-      //   test: /\.vue$/,
-      //   loader: 'vue-loader',
-      //   options: vueLoaderConfig
+      //   test: /\.(js|vue)$/,
+      //   loader: 'eslint-loader',
+      //   enforce: 'pre',
+      //   include: [resolve('src'), resolve('test')],
+      //   options: {
+      //     formatter: require('eslint-friendly-formatter')
+      //   }
+      // },
+      // {
+      //   test: /\.tsx?$/,
+      //   exclude: /node_modules/,
+      //   enforce: 'pre',
+      //   use: [
+      //     {
+      //         loader: 'tslint-loader',
+      //         options: {
+      //             configFile: 'tslint.json'
+      //         }
+      //     }
+      //   ]
       // },
       {
-        test: /\.js$/,
-        loader: 'babel-loader?cacheDirectory',
-        include: [
-          resolve('src'),
-          resolve('test'),
-          resolve('node_modules/webpack-dev-server/client')
-        ]
-      },
-      {
-        test: /\.tsx?$/, // tslint 代码检查, 打开注释可用
-        loader: 'tslint-loader',
-        enforce: 'pre',
-        include: [resolve('src'), resolve('test')],
-        exclude: /node_modules/
-      },
-      {
         test: /\.vue$/,
-        loader: 'vue-loader',
-        options: Object.assign(vueLoaderConfig, {
-          loaders: {
-            ts: "ts-loader",
-            tsx: "babel-loader!ts-loader"
-          }
-        })
+        loader: 'vue-loader'
+        // options: vueLoaderConfig
       },
       {
         test: /\.tsx?$/,
         exclude: /node_modules/,
-        use: [{
-          loader: 'babel-loader'
-        }, {
-          loader: 'ts-loader',
-          options: {
-            appendTsSuffixTo: [/\.vue$/]
+        // loader: 'ts-loader',
+        use: [
+          "babel-loader",
+          {
+            loader: "ts-loader",
+            options: { appendTsxSuffixTo: [/\.vue$/] }
+          },
+          {
+            loader: 'tslint-loader'
           }
-        }]
+        ]
       },
       {
-        test: /\.svg$/,
-        loader: 'svg-sprite-loader',
-        include: [resolve('src/icons')],
-        options: {
-          symbolId: 'icon-[name]'
-        }
+        test: /\.js$/,
+        loader: 'babel-loader',
+        include: [resolve('src'), resolve('test')]
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
-        exclude: [resolve('src/icons')],
         options: {
           limit: 10000,
           name: utils.assetsPath('img/[name].[hash:7].[ext]')
@@ -125,17 +118,22 @@ module.exports = {
       }
     ]
   },
-  plugins: [new VueLoaderPlugin()],
-  node: {
-    // prevent webpack from injecting useless setImmediate polyfill because Vue
-    // source contains it (although only uses it if it's native).
-    setImmediate: false,
-    // prevent webpack from injecting mocks to Node native modules
-    // that does not make sense for the client
-    dgram: 'empty',
-    fs: 'empty',
-    net: 'empty',
-    tls: 'empty',
-    child_process: 'empty'
-  }
+  plugins: [
+    // new ForkTsCheckerWebpackPlugin({
+    //   tslint: true,
+    //   vue: true
+    // }),
+    new VueLoaderPlugin(),
+    new webpack.ProvidePlugin({
+      _: 'lodash'
+    }),
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        resolve: {
+          extensions: ['', '.ts', '.tsx']
+        }
+      }
+    })
+  ]
 }
+

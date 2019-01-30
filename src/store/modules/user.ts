@@ -1,19 +1,19 @@
 const state = {
   info: {
-    data: "store data from user",
+    data: 'store data from user'
   },
-  auth: {},
-};
+  auth: {}
+}
 
-const mutations = {};
+const mutations = {}
 
 const getters = {
-  info: (state) => state.info,
-};
+  info: (state) => state.info
+}
 
 export default {
   state,
   mutations,
   actions: {},
-  getters,
-};
+  getters
+}
