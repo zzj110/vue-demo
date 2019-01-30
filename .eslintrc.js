@@ -190,6 +190,21 @@ module.exports = {
     'object-curly-spacing': [2, 'always', {
       objectsInObjects: false
     }],
-    'array-bracket-spacing': [2, 'never']
+    'array-bracket-spacing': [2, 'never'],
+    // "eslint.autoFixOnSave": true,
+    // "eslint.validate": [
+    //   "javascript",
+    //   "javascriptreact",
+    //   {
+    //     "language": "html",
+    //     "autoFix": true
+    //   },
+    //   {
+    //     "language": "vue",
+    //     "autoFix": true
+    //   }
+    // ],
+
+
   }
 }

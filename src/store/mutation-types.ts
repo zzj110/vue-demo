@@ -1,0 +1,8 @@
+// search
+export const INDEX_KEYWORD = 'INDEX_KEYWORD'
+export const INDEX_DATE = 'INDEX_DATE'
+export const INDEX_TABLE_LIST='INDEX_TABLE_LIST'
+export const INDEX_LOADING='INDEX_LOADING'
+export const INDEX_PAGINATION = 'INDEX_PAGINATION'
+export const INDEX_COLUMNS = 'INDEX_COLUMNS'
+
