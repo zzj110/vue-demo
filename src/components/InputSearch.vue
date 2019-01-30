@@ -4,11 +4,9 @@
       <div class="keyword">
         <el-input
           v-model="keyword"
-          @change="keywordChange"
-          clearable>
+          @on-change="keywordChange">
             <template slot="prepend">搜索</template>
         </el-input>
-
       </div>
       <div class="date">
         <span class="label">时间</span>
@@ -17,7 +15,7 @@
             type="date"
             style="width: 200px"
             placeholder="选择日期"
-            @change="dateChange">
+            @on-change="dateChange">
           </el-date-picker>
       </div>
      <!-- <Table
@@ -51,8 +49,8 @@
         :current-page="paginationGet.current"
         :total="paginationGet.total"
         :page-size="paginationGet.pageSize"
-        @current-change="paginationChange"
-        @size-change="paginationSizeChange">
+        @on-current-change="paginationChange"
+        @on-size-change="paginationSizeChange">
       </el-pagination>
     </div>
     </div>
